@@ -1,0 +1,7 @@
+[package]
+name = "sfml-test"
+version = "0.1.0"
+authors = ["Craig Bishop <craig.bishop@vcatechnology.com>"]
+
+[dependencies]
+sfml = "0.14.0"
