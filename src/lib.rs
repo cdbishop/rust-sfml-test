@@ -89,40 +89,51 @@ mod tests {
 
     #[test]
     fn branch_if_eq_to_val() {
-        let mut cpu = Chip8::new();
-        let instruction:u16 = 0x3155;
-        cpu.memory[0x200] = (instruction >> 8u16) as u8;
-        cpu.memory[0x201] = (instruction & 0xFF) as u8;
-        cpu.registers[1] = 0x55;
-        let expected = cpu.pc + 4;
-        cpu.cycle();
-        assert_eq!(cpu.pc, expected);
+        {
+            let mut cpu = Chip8::new();
+            let instruction:u16 = 0x3155;
+            cpu.memory[0x200] = (instruction >> 8u16) as u8;
+            cpu.memory[0x201] = (instruction & 0xFF) as u8;
+            cpu.registers[1] = 0x55;
+            let expected = cpu.pc + 4;
+            cpu.cycle();
+            assert_eq!(cpu.pc, expected);
+        }
 
-        cpu.memory[0x200] = (instruction >> 8u16) as u8;
-        cpu.memory[0x201] = (instruction & 0xFF) as u8;
-        cpu.registers[1] = 0x99;
-        let expected2 = cpu.pc + 2;
-        cpu.cycle();
-        assert_eq!(cpu.pc, expected2);
+        {
+            let mut cpu = Chip8::new();
+            let instruction:u16 = 0x3155;
+            cpu.memory[0x200] = (instruction >> 8u16) as u8;
+            cpu.memory[0x201] = (instruction & 0xFF) as u8;
+            cpu.registers[1] = 0x99;        
+            let expected = cpu.pc + 2;
+            cpu.cycle();
+            assert_eq!(cpu.pc, expected);
+        }
     }
 
     #[test]
     fn branch_if_not_eq_to_val() {
-        let mut cpu = Chip8::new();
-        let instruction:u16 = 0x4155;
-        cpu.memory[0x200] = (instruction >> 8u16) as u8;
-        cpu.memory[0x201] = (instruction & 0xFF) as u8;
-        cpu.registers[1] = 0x55;
-        let expected = cpu.pc + 2;
-        cpu.cycle();
-        assert_eq!(cpu.pc, expected);
+        {
+            let mut cpu = Chip8::new();
+            let instruction:u16 = 0x4155;
+            cpu.memory[0x200] = (instruction >> 8u16) as u8;
+            cpu.memory[0x201] = (instruction & 0xFF) as u8;
+            cpu.registers[1] = 0x55;
+            let expected = cpu.pc + 2;
+            cpu.cycle();
+            assert_eq!(cpu.pc, expected);
+        }
 
-        let instruction:u16 = 0x4155;
-        cpu.memory[0x200] = (instruction >> 8u16) as u8;
-        cpu.memory[0x201] = (instruction & 0xFF) as u8;
-        cpu.registers[1] = 0x55;
-        let expected2 = cpu.pc + 4;
-        cpu.cycle();
-        assert_eq!(cpu.pc, expected2);
+        {
+            let mut cpu = Chip8::new();
+            let instruction:u16 = 0x4155;
+            cpu.memory[0x200] = (instruction >> 8u16) as u8;
+            cpu.memory[0x201] = (instruction & 0xFF) as u8;
+            cpu.registers[1] = 0x99;
+            let expected = cpu.pc + 4;
+            cpu.cycle();
+            assert_eq!(cpu.pc, expected);
+        }
     }
 }
