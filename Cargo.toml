@@ -5,3 +5,4 @@ authors = ["Craig Bishop <craig.bishop@vcatechnology.com>"]
 
 [dependencies]
 sfml = "0.14.0"
+rand = "0.5"
